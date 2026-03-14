@@ -24,7 +24,6 @@
 - 📂 **[google-ecosystem/](./google-ecosystem)**: GDSC, GDG Live, GSoC, and Google Hackathon projects.
 - 📂 **[apple-ecosystem/](./apple-ecosystem)**: Apple Developers Club initiatives and Apple Hackathon archives.
 - 📂 **[microsoft-ecosystem/](./microsoft-ecosystem)**: MS Student Learn projects, Products, and Hackathon wins.
-- 📂 **[piaic-ai-specialist/](./piaic-ai-specialist)**: Advanced AI and Generative implementations from PIAIC.
 - 📂 **[open-source-legacy/](./open-source-legacy)**: Recovery of production-grade products and community tools.
 
 ---
