@@ -50,4 +50,4 @@ This project is licensed under the Apache-2.0 License.
 
 ---
 
-Built by [Mohammad-Arqaö-Javed/arqamxscales]
+Built by [Mohammad-Arqam-Javed/arqamxscales]
