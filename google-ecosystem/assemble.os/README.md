@@ -2,8 +2,6 @@
 
 **Assemble.OS** is a high-performance, real-time developer command center designed for modern engineering teams. It combines mission-critical monitoring, collaborative task management, and deep AI integration into a single, immersive "Mission Control" interface.
 
-![Assemble.OS Preview](https://picsum.photos/seed/dashboard/1200/600)
-
 ## ✨ Key Features
 
 ### 🧠 Neural AI Core (Gemini 3 Flash)
@@ -30,42 +28,14 @@
 *   **AI**: Google Gemini API (@google/genai)
 *   **Build Tool**: Vite
 
-## 🚀 Getting Started
-
+* **Environment:** Developed for Google Developers Club/Gdg Live / GDG Technical Challenges & Assesments.
+* **Core Focus:** Systems Architecture & Hardware-Software Convergence.
+* **Status:** Legacy Archive (Migrated March 2026)
+  
 ### Prerequisites
 *   Node.js (v18+)
 *   NPM or Yarn
 *   A Google Gemini API Key
-
-### Installation
-
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/your-username/assemble-os.git
-    cd assemble-os
-    ```
-
-2.  **Install dependencies**:
-    ```bash
-    npm install
-    ```
-
-3.  **Set up environment variables**:
-    Create a `.env` file in the root directory:
-    ```env
-    GEMINI_API_KEY=your_api_key_here
-    ```
-
-4.  **Start the development server**:
-    ```bash
-    npm run dev
-    ```
-
-5.  **Build for production**:
-    ```bash
-    npm run build
-    npm start
-    ```
 
 ## 📂 Project Structure
 
@@ -80,4 +50,4 @@ This project is licensed under the Apache-2.0 License.
 
 ---
 
-Built with ❤️ by [Your Name/Handle]
+Built by [Mohammad-Arqaö-Javed/arqamxscales]
