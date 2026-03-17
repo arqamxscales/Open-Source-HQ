@@ -1,0 +1,12 @@
+create table nodes (
+  id text primary key,
+  label text not null,
+  type text not null,
+  has_security_risk boolean default false
+);
+
+create table edges (
+  id serial primary key,
+  source text references nodes(id) on delete cascade,
+  target text references nodes(id) on delete cascade
+);
