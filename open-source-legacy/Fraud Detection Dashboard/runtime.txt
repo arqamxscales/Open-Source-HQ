@@ -1,0 +1,8 @@
+{
+  "name": "fraud-detection-dashboard",
+  "version": "1.0.0",
+  "description": "AI-powered Fraud Detection Dashboard for Pakistani Banking",
+  "engines": {
+    "python": "3.9"
+  }
+}
