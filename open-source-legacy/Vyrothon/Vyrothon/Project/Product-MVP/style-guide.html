@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Creatix AI — Style Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:#08080F;--surface:#111119;--surface-2:#1A1A27;--surface-3:#22223A;
+  --border:rgba(255,255,255,0.07);--primary:#5B5BF5;--primary-glow:rgba(91,91,245,0.3);
+  --accent:#0DDDD4;--warn:#F5A623;--danger:#F54B4B;--success:#22C55E;
+  --text-1:#F0F0FF;--text-2:#9999BB;--text-3:#55556A;
+  --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'JetBrains Mono',monospace;
+  --r-sm:8px;--r-md:14px;--r-lg:20px;--r-xl:28px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font-body);font-size:15px;line-height:1.6}
+.page{max-width:1100px;margin:0 auto;padding:60px 32px 100px}
+.cover{text-align:center;padding:80px 0 60px;border-bottom:1px solid var(--border);margin-bottom:60px}
+.cover-eyebrow{font-size:12px;color:var(--text-3);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.cover-title{font-family:var(--font-display);font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-3px;line-height:1;margin-bottom:16px}
+.cover-title span{color:var(--primary)}
+.cover-sub{font-size:16px;color:var(--text-2);max-width:500px;margin:0 auto 24px}
+.cover-meta{display:inline-flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.meta-tag{padding:6px 14px;border-radius:100px;background:var(--surface-2);border:1px solid var(--border);font-size:12px;color:var(--text-2)}
+.meta-tag strong{color:var(--accent)}
+
+.section{margin-bottom:64px}
+.section-num{font-family:var(--font-mono);font-size:12px;color:var(--primary);margin-bottom:8px;display:block}
+.section-title{font-family:var(--font-display);font-size:28px;font-weight:800;letter-spacing:-1px;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:8px}
+.section-desc{color:var(--text-2);font-size:14px;margin-bottom:32px}
+
+/* Colors */
+.color-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:24px}
+.swatch{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--border)}
+.swatch-block{height:72px}
+.swatch-info{padding:10px 12px;background:var(--surface)}
+.swatch-name{font-size:12px;font-weight:600;margin-bottom:2px}
+.swatch-hex{font-family:var(--font-mono);font-size:10px;color:var(--text-3)}
+.swatch-use{font-size:10px;color:var(--text-2);margin-top:3px;line-height:1.4}
+
+/* Type */
+.type-entry{display:flex;align-items:baseline;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
+.type-entry:last-child{border-bottom:none}
+.type-spec{min-width:160px;flex-shrink:0}
+.type-spec-name{font-family:var(--font-mono);font-size:11px;color:var(--primary);margin-bottom:4px}
+.type-spec-detail{font-size:11px;color:var(--text-3);line-height:1.5}
+
+/* Components */
+.comp-section{margin-bottom:40px}
+.comp-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-3);margin-bottom:16px}
+.comp-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:8px}
+.comp-note{font-size:11px;color:var(--text-3);border-left:2px solid var(--border);padding-left:10px;line-height:1.6;margin-top:6px}
+
+/* Mode accent system */
+.mode-accents{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.mode-accent{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--border)}
+.mode-accent-top{height:4px}
+.mode-accent-body{padding:12px;background:var(--surface)}
+.mode-accent-icon{font-size:20px;margin-bottom:6px;display:block}
+.mode-accent-name{font-size:12px;font-weight:700;margin-bottom:2px}
+.mode-accent-hex{font-family:var(--font-mono);font-size:10px;color:var(--text-3)}
+
+/* Buttons */
+.btn-p{height:40px;padding:0 20px;background:var(--primary);border:none;border-radius:var(--r-md);color:#fff;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer}
+.btn-s{height:40px;padding:0 20px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);color:var(--text-1);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer}
+.btn-g{height:40px;padding:0 20px;background:transparent;border:none;border-radius:var(--r-md);color:var(--text-2);font-family:var(--font-body);font-size:13px;cursor:pointer}
+.btn-d{height:40px;padding:0 20px;background:rgba(245,75,75,0.1);border:1px solid rgba(245,75,75,0.3);border-radius:var(--r-md);color:var(--danger);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer}
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600}
+.b-p{background:rgba(91,91,245,0.15);color:var(--primary)}
+.b-s{background:rgba(34,197,94,0.15);color:var(--success)}
+.b-w{background:rgba(245,166,35,0.15);color:var(--warn)}
+.b-d{background:rgba(245,75,75,0.15);color:var(--danger)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px}
+.card-e{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+.card-a{background:rgba(91,91,245,0.06);border:1px solid rgba(91,91,245,0.2);border-radius:var(--r-lg);padding:16px}
+.inp{width:100%;height:40px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);color:var(--text-1);font-family:var(--font-body);font-size:13px;padding:0 12px;outline:none}
+
+.footer{text-align:center;padding:40px 0;border-top:1px solid var(--border);color:var(--text-3);font-size:12px;margin-top:60px}
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-eyebrow">Design System · v1.0</div>
+    <div class="cover-title">Creatix AI<br/><span>Style Guide</span></div>
+    <div class="cover-sub">Colours, typography, components, and patterns — annotated for handoff and extension.</div>
+    <div class="cover-meta">
+      <div class="meta-tag">👤 <strong>Mohammad Arqam Javed</strong></div>
+      <div class="meta-tag">🏆 VYROTHON 2026</div>
+      <div class="meta-tag">🏛 NUST NSTP</div>
+      <div class="meta-tag">📅 18 April 2026</div>
+    </div>
+  </div>
+
+  <!-- 01 Colors -->
+  <div class="section">
+    <span class="section-num">01</span>
+    <div class="section-title">Colour System</div>
+    <p class="section-desc">Dark-mode-first. Two brand primaries (indigo + cyan), semantic state colours, and a neutral ramp on a blue-tinted black base. All foreground/background combinations meet WCAG AA (4.5:1 contrast).</p>
+
+    <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-3);margin-bottom:12px">Brand Colours</p>
+    <div class="color-row" style="margin-bottom:28px">
+      <div class="swatch"><div class="swatch-block" style="background:#5B5BF5"></div><div class="swatch-info"><div class="swatch-name">Primary</div><div class="swatch-hex">#5B5BF5</div><div class="swatch-use">CTAs, active nav, focus rings, accent borders</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#0DDDD4"></div><div class="swatch-info"><div class="swatch-name">Accent</div><div class="swatch-hex">#0DDDD4</div><div class="swatch-use">Secondary highlights, live indicators, badges</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:linear-gradient(135deg,#5B5BF5,#0DDDD4)"></div><div class="swatch-info"><div class="swatch-name">Brand Gradient</div><div class="swatch-hex">Primary → Accent</div><div class="swatch-use">Hero meshes, avatar fills, special CTAs</div></div></div>
+    </div>
+
+    <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-3);margin-bottom:12px">Surfaces</p>
+    <div class="color-row" style="margin-bottom:28px">
+      <div class="swatch"><div class="swatch-block" style="background:#08080F;border:1px solid #1A1A27"></div><div class="swatch-info"><div class="swatch-name">Background</div><div class="swatch-hex">--bg · #08080F</div><div class="swatch-use">Base page. Never use on text.</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#111119"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">--surface · #111119</div><div class="swatch-use">Cards, sidebars, panels</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#1A1A27"></div><div class="swatch-info"><div class="swatch-name">Surface 2</div><div class="swatch-hex">--surface-2 · #1A1A27</div><div class="swatch-use">Elevated cards, modals, hover fills</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#22223A"></div><div class="swatch-info"><div class="swatch-name">Surface 3</div><div class="swatch-hex">--surface-3 · #22223A</div><div class="swatch-use">Inputs (active), kbd chips, nested elements</div></div></div>
+    </div>
+
+    <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-3);margin-bottom:12px">Text</p>
+    <div class="color-row" style="margin-bottom:28px">
+      <div class="swatch"><div class="swatch-block" style="background:#F0F0FF"></div><div class="swatch-info"><div class="swatch-name">Text 1</div><div class="swatch-hex">--text-1 · #F0F0FF</div><div class="swatch-use">Headings, labels, active items</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#9999BB"></div><div class="swatch-info"><div class="swatch-name">Text 2</div><div class="swatch-hex">--text-2 · #9999BB</div><div class="swatch-use">Body copy, descriptions</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#55556A"></div><div class="swatch-info"><div class="swatch-name">Text 3</div><div class="swatch-hex">--text-3 · #55556A</div><div class="swatch-use">Placeholders, metadata, section labels</div></div></div>
+    </div>
+
+    <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-3);margin-bottom:12px">Semantic</p>
+    <div class="color-row" style="margin-bottom:28px">
+      <div class="swatch"><div class="swatch-block" style="background:#22C55E"></div><div class="swatch-info"><div class="swatch-name">Success</div><div class="swatch-hex">#22C55E</div><div class="swatch-use">Confirmations, positive trends, valid inputs</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#F5A623"></div><div class="swatch-info"><div class="swatch-name">Warning</div><div class="swatch-hex">#F5A623</div><div class="swatch-use">Alerts, quota warnings, beta tags</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#F54B4B"></div><div class="swatch-info"><div class="swatch-name">Danger</div><div class="swatch-hex">#F54B4B</div><div class="swatch-use">Errors, destructive actions, invalid inputs</div></div></div>
+    </div>
+
+    <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-3);margin-bottom:12px">Mode Accent System</p>
+    <div class="mode-accents">
+      <div class="mode-accent"><div class="mode-accent-top" style="background:#5B5BF5"></div><div class="mode-accent-body"><span class="mode-accent-icon">📝</span><div class="mode-accent-name">Docs</div><div class="mode-accent-hex">#5B5BF5</div></div></div>
+      <div class="mode-accent"><div class="mode-accent-top" style="background:#0DDDD4"></div><div class="mode-accent-body"><span class="mode-accent-icon">🖼</span><div class="mode-accent-name">Slides</div><div class="mode-accent-hex">#0DDDD4</div></div></div>
+      <div class="mode-accent"><div class="mode-accent-top" style="background:#F5A623"></div><div class="mode-accent-body"><span class="mode-accent-icon">📊</span><div class="mode-accent-name">Sheets</div><div class="mode-accent-hex">#F5A623</div></div></div>
+      <div class="mode-accent"><div class="mode-accent-top" style="background:#E040FB"></div><div class="mode-accent-body"><span class="mode-accent-icon">🎨</span><div class="mode-accent-name">Images</div><div class="mode-accent-hex">#E040FB</div></div></div>
+      <div class="mode-accent"><div class="mode-accent-top" style="background:#F54B4B"></div><div class="mode-accent-body"><span class="mode-accent-icon">🎬</span><div class="mode-accent-name">Video</div><div class="mode-accent-hex">#F54B4B</div></div></div>
+      <div class="mode-accent"><div class="mode-accent-top" style="background:#22C55E"></div><div class="mode-accent-body"><span class="mode-accent-icon">🎵</span><div class="mode-accent-name">Music</div><div class="mode-accent-hex">#22C55E</div></div></div>
+      <div class="mode-accent"><div class="mode-accent-top" style="background:#F59E0B"></div><div class="mode-accent-body"><span class="mode-accent-icon">🔊</span><div class="mode-accent-name">Audio</div><div class="mode-accent-hex">#F59E0B</div></div></div>
+      <div class="mode-accent"><div class="mode-accent-top" style="background:#6366F1"></div><div class="mode-accent-body"><span class="mode-accent-icon">🤖</span><div class="mode-accent-name">AI Chat</div><div class="mode-accent-hex">#6366F1</div></div></div>
+    </div>
+    <div style="margin-top:12px;font-size:11px;color:var(--text-3);border-left:2px solid var(--border);padding-left:10px;line-height:1.6">Each mode carries a unique accent colour applied as: (1) a 2px top-border on mode cards, (2) hover border colour, (3) sidebar icon colour on active state. These colours are consistent from Onboarding Screen 2 through the Dashboard — building visual memory.</div>
+  </div>
+
+  <!-- 02 Typography -->
+  <div class="section">
+    <span class="section-num">02</span>
+    <div class="section-title">Typography</div>
+    <p class="section-desc">Two fonts. Syne (800 weight) for all display and heading text — its geometric, architectural quality creates a distinctive editorial identity. DM Sans for all body copy — optically balanced at reading sizes. JetBrains Mono for code, keyboard shortcuts, and metadata.</p>
+
+    <div>
+      <div class="type-entry">
+        <div class="type-spec"><div class="type-spec-name">display-xl</div><div class="type-spec-detail">Syne 800 · 96px<br/>Letter -4px · LH 0.92<br/>Use: hero titles only</div></div>
+        <div style="font-family:'Syne',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-3px;line-height:0.95">Creatix AI</div>
+      </div>
+      <div class="type-entry">
+        <div class="type-spec"><div class="type-spec-name">display-lg</div><div class="type-spec-detail">Syne 800 · 56px<br/>Letter -2px · LH 1.0<br/>Use: screen heroes</div></div>
+        <div style="font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-2px">Create anything.</div>
+      </div>
+      <div class="type-entry">
+        <div class="type-spec"><div class="type-spec-name">heading-xl</div><div class="type-spec-detail">Syne 800 · 32px<br/>Letter -1px · LH 1.1<br/>Use: section headers</div></div>
+        <div style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:800;letter-spacing:-1px">Your AI co-pilot is ready</div>
+      </div>
+      <div class="type-entry">
+        <div class="type-spec"><div class="type-spec-name">heading-md</div><div class="type-spec-detail">Syne 700 · 20px<br/>Letter -0.5px · LH 1.2<br/>Use: card titles, groups</div></div>
+        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;letter-spacing:-0.5px">Eight modes. One workspace.</div>
+      </div>
+      <div class="type-entry">
+        <div class="type-spec"><div class="type-spec-name">heading-sm</div><div class="type-spec-detail">Syne 700 · 16px<br/>Letter 0 · LH 1.3<br/>Use: list titles, sidebar</div></div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700">Recent projects · Create new</div>
+      </div>
+      <div class="type-entry">
+        <div class="type-spec"><div class="type-spec-name">label-caps</div><div class="type-spec-detail">DM Sans 600 · 11px<br/>Letter +1px · UPPERCASE<br/>Use: section labels, steps</div></div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-3)">Step 1 of 3 · Create · What you can build</div>
+      </div>
+      <div class="type-entry">
+        <div class="type-spec"><div class="type-spec-name">body-lg</div><div class="type-spec-detail">DM Sans 400 · 17px<br/>Letter 0 · LH 1.7<br/>Use: hero descriptions</div></div>
+        <div style="font-size:17px;line-height:1.7;color:var(--text-2)">Everything you create — from a pitch deck to a podcast — lives in one workspace designed for AI-native creation.</div>
+      </div>
+      <div class="type-entry">
+        <div class="type-spec"><div class="type-spec-name">body-md</div><div class="type-spec-detail">DM Sans 400 · 15px<br/>Letter 0 · LH 1.6<br/>Use: default body text</div></div>
+        <div style="font-size:15px;line-height:1.6;color:var(--text-2)">Creatix gives you eight creation modes that share a single workspace, AI context, and file system.</div>
+      </div>
+      <div class="type-entry">
+        <div class="type-spec"><div class="type-spec-name">body-sm</div><div class="type-spec-detail">DM Sans 400 · 13px<br/>Letter 0 · LH 1.5<br/>Use: captions, metadata</div></div>
+        <div style="font-size:13px;line-height:1.5;color:var(--text-2)">Use for timestamps, card descriptions, secondary labels, and table body text throughout the product.</div>
+      </div>
+      <div class="type-entry">
+        <div class="type-spec"><div class="type-spec-name">mono</div><div class="type-spec-detail">JetBrains Mono 400<br/>12px · LH 1.5<br/>Use: hex, shortcuts, code</div></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;color:var(--primary)">#5B5BF5 · --primary · ⌘K · v2.4.1 · 08080F</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 Components -->
+  <div class="section">
+    <span class="section-num">03</span>
+    <div class="section-title">Components</div>
+    <p class="section-desc">All interactive components used across the Creatix auth, onboarding, and dashboard flows. Documented with state rules and annotation.</p>
+
+    <div class="comp-section">
+      <div class="comp-label">Buttons</div>
+      <div class="comp-row">
+        <button class="btn-p">Primary</button>
+        <button class="btn-s">Secondary</button>
+        <button class="btn-g">Ghost</button>
+        <button class="btn-d">Danger</button>
+      </div>
+      <div class="comp-note">Primary (#5B5BF5): single highest-priority action per screen. Secondary: supporting actions. Ghost: navigation-style actions, low visual weight. Danger: destructive operations only, never default. Never two Primary buttons on one screen. Disabled: 40% opacity + cursor:not-allowed.</div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">Inputs — States</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:8px">
+        <div><div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Default</div><input class="inp" placeholder="Placeholder…"/></div>
+        <div><div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Focus</div><input class="inp" style="border-color:var(--primary);box-shadow:0 0 0 3px rgba(91,91,245,0.3)" value="user@email.com"/></div>
+        <div><div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Error</div><input class="inp" style="border-color:var(--danger)" value="invalid"/><div style="font-size:11px;color:var(--danger);margin-top:4px">Please enter a valid email.</div></div>
+        <div><div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Success</div><input class="inp" style="border-color:var(--success)" value="arqam@nust.edu.pk"/><div style="font-size:11px;color:var(--success);margin-top:4px">Looks good!</div></div>
+      </div>
+      <div class="comp-note">Height: 44px · Border-radius: 14px (--r-md) · Focus ring: 3px solid rgba(primary, 0.35). Error shown on blur only. Labels always above input. Placeholder: --text-3.</div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">Cards</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:8px">
+        <div class="card"><div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Base card</div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px">Creation mode tiles, intent cards, recent items</div></div>
+        <div class="card-e"><div style="font-size:11px;color:var(--text-3);margin-bottom:6px">Elevated</div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px">Modals, dropdowns, popovers</div></div>
+        <div class="card-a"><div style="font-size:11px;color:var(--primary);margin-bottom:6px">Accent</div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px">AI prompt bars, featured elements</div></div>
+      </div>
+      <div class="comp-note">Border-radius: 20px (--r-lg). 1px solid border at --border opacity. Hover: translateY(-2px) + border-color change. Mode cards add a 2px top-border in the mode's accent colour. Never use box-shadow as the sole hover affordance.</div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">Badges</div>
+      <div class="comp-row">
+        <span class="badge b-p">✨ Primary</span>
+        <span class="badge b-s">✓ Success</span>
+        <span class="badge b-w">⚠ Warning</span>
+        <span class="badge b-d">✕ Danger</span>
+      </div>
+      <div class="comp-note">Background: 15% opacity of semantic colour. Text: full semantic colour. Always border-radius: 100px. For status and labels only — never for interactive actions. New/Beta mode labels use the primary badge.</div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">Spacing Scale</div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-bottom:8px">
+        <div style="text-align:center"><div style="width:4px;height:4px;background:var(--primary);border-radius:1px;margin:0 auto 4px"></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3)">4</div></div>
+        <div style="text-align:center"><div style="width:8px;height:8px;background:var(--primary);border-radius:1px;margin:0 auto 4px"></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3)">8</div></div>
+        <div style="text-align:center"><div style="width:12px;height:12px;background:var(--primary);border-radius:1px;margin:0 auto 4px"></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3)">12</div></div>
+        <div style="text-align:center"><div style="width:16px;height:16px;background:var(--primary);border-radius:1px;margin:0 auto 4px"></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3)">16</div></div>
+        <div style="text-align:center"><div style="width:20px;height:20px;background:var(--primary);border-radius:1px;margin:0 auto 4px"></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3)">20</div></div>
+        <div style="text-align:center"><div style="width:24px;height:24px;background:var(--primary);border-radius:1px;margin:0 auto 4px"></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3)">24</div></div>
+        <div style="text-align:center"><div style="width:32px;height:32px;background:var(--primary);border-radius:1px;margin:0 auto 4px"></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3)">32</div></div>
+        <div style="text-align:center"><div style="width:40px;height:40px;background:var(--primary);border-radius:1px;margin:0 auto 4px"></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3)">40</div></div>
+        <div style="text-align:center"><div style="width:48px;height:48px;background:var(--primary);border-radius:1px;margin:0 auto 4px"></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3)">48</div></div>
+        <div style="text-align:center"><div style="width:60px;height:60px;background:var(--primary);border-radius:1px;margin:0 auto 4px"></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-3)">60</div></div>
+      </div>
+      <div class="comp-note">Base-4 system: 4, 8, 12, 16, 20, 24, 32, 40, 48, 60, 80px. Border-radius tokens: --r-sm: 8px (chips, tags) · --r-md: 14px (inputs, buttons) · --r-lg: 20px (cards) · --r-xl: 28px (hero panels, modals) · 100px (pills, avatars).</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Creatix AI Design System · Mohammad Arqam Javed · VYROTHON 2026 · NUST NSTP · 18 April 2026
+  </div>
+</div>
+</body>
+</html>

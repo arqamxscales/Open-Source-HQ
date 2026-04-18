@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Creatix AI — Product Design by Mohammad Arqam Javed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #08080F;
+  --surface: #111119;
+  --surface-2: #1A1A27;
+  --surface-3: #22223A;
+  --border: rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.15);
+  --primary: #5B5BF5;
+  --primary-glow: rgba(91,91,245,0.35);
+  --accent: #0DDDD4;
+  --accent-glow: rgba(13,221,212,0.2);
+  --warn: #F5A623;
+  --danger: #F54B4B;
+  --success: #22C55E;
+  --text-1: #F0F0FF;
+  --text-2: #9999BB;
+  --text-3: #55556A;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+.proto-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  background: rgba(8,8,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 56px;
+  gap: 12px;
+}
+
+.proto-nav-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--text-1);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+.proto-nav-brand span { color: var(--primary); }
+
+.proto-nav-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.proto-nav-tabs::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.nav-tab:hover { background: var(--surface-2); color: var(--text-1); }
+.nav-tab.active { background: var(--primary); color: #fff; }
+
+/* ── SCREENS ── */
+.screen { display: none; min-height: 100vh; padding-top: 56px; }
+.screen.active { display: flex; flex-direction: column; }
+
+/* ── COVER ── */
+#cover {
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-mesh {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 20% 30%, rgba(91,91,245,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 80% 70%, rgba(13,221,212,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 60% 20%, rgba(91,91,245,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cover-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.cover-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 60px 24px;
+  text-align: center;
+  gap: 0;
+}
+
+.cover-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border-hover);
+  background: var(--surface-2);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  animation: fadeUp 0.6s ease both;
+}
+.cover-badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+
+.cover-title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 8vw, 96px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.cover-title em { font-style: normal; color: var(--primary); }
+.cover-title .teal { color: var(--accent); }
+
+.cover-sub {
+  max-width: 580px;
+  color: var(--text-2);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 48px;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 56px;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.meta-pill {
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-1);
+}
+.meta-pill strong { color: var(--accent); }
+
+.cover-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 900px;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+.cover-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  text-align: left;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.cover-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.cover-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+.cover-card-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.cover-card p { color: var(--text-2); font-size: 13px; line-height: 1.65; }
+
+.cover-ab {
+  width: 100%;
+  max-width: 900px;
+  background: linear-gradient(135deg, rgba(91,91,245,0.08), rgba(13,221,212,0.05));
+  border: 1px solid rgba(91,91,245,0.25);
+  border-radius: var(--r-lg);
+  padding: 28px 32px;
+  text-align: left;
+  margin-top: 16px;
+  animation: fadeUp 0.6s 0.5s ease both;
+}
+.cover-ab-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--warn);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cover-ab-label::before {
+  content: '⚗';
+  font-size: 14px;
+}
+.cover-ab h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.cover-ab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.ab-chip {
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+}
+.ab-chip-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-3);
+  margin-bottom: 6px;
+}
+.ab-chip-val { font-size: 13px; color: var(--text-1); }
+.ab-chip-val strong { color: var(--accent); }
+
+/* ── AUTH SCREEN ── */
+#auth {
+  background: var(--bg);
+  display: none;
+  flex-direction: row;
+  min-height: 100vh;
+}
+#auth.active { display: flex; }
+
+.auth-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.auth-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 80% at 50% 40%, rgba(91,91,245,0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(13,221,212,0.1) 0%, transparent 60%);
+}
+.auth-bg-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.auth-left-content {
+  position: relative; z-index: 2;
+  max-width: 440px;
+  text-align: center;
+}
+
+.auth-logo {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 48px;
+}
+.auth-logo span { color: var(--primary); }
+
+.auth-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+.auth-tagline em { font-style: normal; color: var(--primary); }
+
+.auth-desc { color: var(--text-2); font-size: 15px; line-height: 1.7; margin-bottom: 40px; }
+
+.auth-modes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.auth-mode-chip {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-2);
+  transition: all 0.2s;
+}
+.auth-mode-chip:hover { border-color: var(--primary); color: var(--text-1); }
+.auth-mode-chip .icon { font-size: 18px; }
+
+.auth-right {
+  width: 420px;
+  min-width: 380px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+}
+
+.auth-form { width: 100%; max-width: 340px; }
+.auth-form-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.auth-form-sub { color: var(--text-2); font-size: 14px; margin-bottom: 32px; }
+.auth-form-sub a { color: var(--primary); text-decoration: none; }
+
+.sso-row { display: flex; gap: 10px; margin-bottom: 24px; }
+.sso-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sso-btn:hover { border-color: var(--border-hover); background: var(--surface-3); }
+.sso-icon { width: 18px; height: 18px; }
+
+.divider {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+  color: var(--text-3);
+  font-size: 12px;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  margin-bottom: 6px;
+}
+.form-input {
+  width: 100%;
+  height: 44px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 0 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+.form-input::placeholder { color: var(--text-3); }
+
+.form-hint { font-size: 12px; color: var(--text-3); margin-top: 6px; }
+.form-error { font-size: 12px; color: var(--danger); margin-top: 6px; display: none; }
+.form-error.show { display: block; }
+
+.btn-primary {
+  width: 100%;
+  height: 46px;
+  background: var(--primary);
+  border: none;
+  border-radius: var(--r-md);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  pointer-events: none;
+}
+.btn-primary:hover { background: #4A4AE8; box-shadow: 0 8px 24px var(--primary-glow); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+.form-terms {
+  font-size: 11px;
+  color: var(--text-3);
+  text-align: center;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+.form-terms a { color: var(--text-2); text-decoration: underline; }
+
+.auth-annotation {
+  background: rgba(91,91,245,0.08);
+  border: 1px solid rgba(91,91,245,0.2);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  margin-top: 32px;
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.6;
+  width: 100%;
+  max-width: 340px;
+}
+.auth-annotation strong { color: var(--primary); }
+
+/* ── INTENT SCREEN ── */
+#intent {
+  background: var(--bg);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+#intent.active { display: flex; }
+
+.intent-content {
+  max-width: 680px;
+  width: 100%;
+  padding: 60px 24px;
+  text-align: center;
+}
+.intent-step { font-size: 12px; color: var(--text-3); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+.intent-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 12px;
+}
+.intent-sub { color: var(--text-2); font-size: 16px; margin-bottom: 48px; }
+
+.intent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.intent-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 24px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.intent-card:hover { border-color: var(--primary); background: rgba(91,91,245,0.06); }
+.intent-card.selected { border-color: var(--primary); background: rgba(91,91,245,0.1); }
+.intent-card .icon { font-size: 32px; }
+.intent-card-name { font-family: var(--font-display); font-size: 15px; font-weight: 700; }
+.intent-card-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+.intent-card.selected .intent-card-name { color: var(--primary); }
+
+.intent-or { color: var(--text-3); font-size: 13px; margin-bottom: 16px; }
+.intent-input-row {
+  display: flex;
+  gap: 12px;
+  max-width: 440px;
+  margin: 0 auto 48px;
+}
+.intent-input {
+  flex: 1;
+  height: 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 0 14px;
+  outline: none;
+}
+.intent-input:focus { border-color: var(--primary); }
+.intent-input::placeholder { color: var(--text-3); }
+.intent-continue {
+  height: 44px;
+  padding: 0 24px;
+  background: var(--primary);
+  border: none;
+  border-radius: var(--r-md);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.intent-continue:hover { background: #4A4AE8; }
+
+.intent-annotation {
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  padding: 16px 20px;
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.65;
+  text-align: left;
+  border-left: 3px solid var(--accent);
+  margin-top: 0;
+}
+
+/* ── ONBOARDING ── */
+#onboarding {
+  background: var(--bg);
+  display: none;
+  align-items: stretch;
+  flex-direction: column;
+}
+#onboarding.active { display: flex; }
+
+.ob-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 24px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ob-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 48px;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ob-step-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  border: 2px solid var(--border);
+  color: var(--text-3);
+  background: transparent;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.ob-step-dot.done { background: var(--primary); border-color: var(--primary); color: #fff; }
+.ob-step-dot.active { border-color: var(--primary); color: var(--primary); }
+.ob-step-line { flex: 1; height: 1px; background: var(--border); }
+.ob-step-line.done { background: var(--primary); }
+
+.ob-step { display: none; width: 100%; text-align: center; animation: fadeUp 0.4s ease; }
+.ob-step.active { display: block; }
+
+.ob-step-label { font-size: 12px; color: var(--text-3); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+.ob-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 12px;
+}
+.ob-title em { font-style: normal; color: var(--primary); }
+.ob-sub { color: var(--text-2); font-size: 16px; margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+/* Step 1: Welcome */
+.ob-hero-card {
+  background: linear-gradient(135deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 40px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.ob-hero-card::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(91,91,245,0.2), transparent 70%);
+}
+.ob-hero-emoji { font-size: 56px; margin-bottom: 16px; display: block; }
+.ob-hero-card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+.ob-hero-card p { color: var(--text-2); font-size: 14px; line-height: 1.7; }
+
+/* Step 2: 8 Modes */
+.modes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.mode-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.mode-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--mode-color, var(--primary));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.mode-card:hover { border-color: var(--mode-color, var(--primary)); transform: translateY(-2px); }
+.mode-card:hover::before { opacity: 1; }
+.mode-icon { font-size: 24px; margin-bottom: 8px; display: block; }
+.mode-name { font-family: var(--font-display); font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.mode-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+
+/* Step 3: First Create */
+.first-create-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+.fc-prompt-label { font-size: 12px; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+.fc-prompt-area {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 14px 16px;
+  outline: none;
+  resize: none;
+  height: 100px;
+  transition: border-color 0.2s;
+  margin-bottom: 16px;
+}
+.fc-prompt-area:focus { border-color: var(--primary); }
+.fc-prompt-area::placeholder { color: var(--text-3); }
+.fc-type-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.fc-type-chip {
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.fc-type-chip:hover, .fc-type-chip.active {
+  border-color: var(--primary);
+  background: rgba(91,91,245,0.1);
+  color: var(--text-1);
+}
+.fc-actions { display: flex; gap: 12px; }
+.btn-generate {
+  flex: 1;
+  height: 46px;
+  background: var(--primary);
+  border: none;
+  border-radius: var(--r-md);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all 0.2s;
+}
+.btn-generate:hover { background: #4A4AE8; box-shadow: 0 8px 24px var(--primary-glow); }
+.btn-skip {
+  height: 46px;
+  padding: 0 20px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text-2);
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-skip:hover { border-color: var(--border-hover); color: var(--text-1); }
+
+.ob-nav { display: flex; gap: 12px; justify-content: center; margin-top: 8px; }
+.ob-btn-back {
+  height: 44px; padding: 0 24px;
+  background: transparent; border: 1px solid var(--border);
+  border-radius: var(--r-md); color: var(--text-2);
+  font-family: var(--font-body); font-size: 14px; cursor: pointer;
+  transition: all 0.2s;
+}
+.ob-btn-back:hover { border-color: var(--border-hover); color: var(--text-1); }
+.ob-btn-next {
+  height: 44px; padding: 0 32px;
+  background: var(--primary); border: none;
+  border-radius: var(--r-md); color: #fff;
+  font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: all 0.2s;
+}
+.ob-btn-next:hover { background: #4A4AE8; }
+
+.ob-annotation {
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  padding: 14px 18px;
+  font-size: 12px;
+  color: var(--text-2);
+  text-align: left;
+  border-left: 3px solid var(--primary);
+  margin-top: 32px;
+  line-height: 1.65;
+}
+
+/* ── DASHBOARD ── */
+#dashboard {
+  background: var(--bg);
+  display: none;
+  flex-direction: row;
+  min-height: 100vh;
+}
+#dashboard.active { display: flex; }
+
+.dash-sidebar {
+  width: 220px;
+  min-width: 220px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  gap: 0;
+  overflow-y: auto;
+}
+.dash-sidebar-logo {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  padding: 0 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.dash-sidebar-logo span { color: var(--primary); }
+
+.sidebar-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-3);
+  padding: 20px 20px 8px;
+}
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  font-size: 14px;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.15s;
+  border-radius: 0;
+  position: relative;
+}
+.sidebar-nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 0;
+  background: var(--primary);
+  border-radius: 0 2px 2px 0;
+  transition: height 0.2s;
+}
+.sidebar-nav-item:hover { background: var(--surface-2); color: var(--text-1); }
+.sidebar-nav-item.active { background: rgba(91,91,245,0.08); color: var(--text-1); }
+.sidebar-nav-item.active::before { height: 24px; }
+.sidebar-nav-icon { font-size: 16px; }
+.sidebar-badge {
+  margin-left: auto;
+  background: var(--primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 100px;
+}
+
+.sidebar-user {
+  margin-top: auto;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.user-name { font-size: 13px; font-weight: 600; }
+.user-plan { font-size: 11px; color: var(--text-3); }
+
+.dash-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.dash-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.dash-greeting { font-family: var(--font-display); font-size: clamp(22px, 3vw, 30px); font-weight: 800; letter-spacing: -1px; }
+.dash-greeting span { color: var(--primary); }
+.dash-date { color: var(--text-3); font-size: 13px; margin-top: 4px; }
+.dash-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 0 16px;
+  height: 40px;
+  min-width: 220px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.dash-search:hover { border-color: var(--border-hover); }
+.dash-search-icon { color: var(--text-3); font-size: 16px; }
+.dash-search-text { color: var(--text-3); font-size: 14px; }
+.dash-search-kbd {
+  margin-left: auto;
+  background: var(--surface-3);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+/* Create Modes */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.section-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.section-link { font-size: 13px; color: var(--primary); cursor: pointer; text-decoration: none; }
+.section-link:hover { text-decoration: underline; }
+
+.create-modes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.create-mode-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.create-mode-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--mode-color, var(--primary));
+}
+.create-mode-card:hover { border-color: var(--mode-color, var(--primary)); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.create-mode-icon { font-size: 26px; margin-bottom: 10px; display: block; }
+.create-mode-name { font-family: var(--font-display); font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.create-mode-desc { font-size: 12px; color: var(--text-2); line-height: 1.4; }
+.create-mode-badge {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(91,91,245,0.15);
+  color: var(--primary);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* AI prompt bar */
+.ai-prompt-bar {
+  background: linear-gradient(135deg, var(--surface), var(--surface-2));
+  border: 1px solid rgba(91,91,245,0.3);
+  border-radius: var(--r-xl);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.ai-prompt-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at left, rgba(91,91,245,0.08), transparent 60%);
+}
+.ai-prompt-bar:hover { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+.ai-prompt-icon { font-size: 24px; flex-shrink: 0; position: relative; }
+.ai-prompt-text { flex: 1; position: relative; }
+.ai-prompt-text h4 { font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.ai-prompt-text p { font-size: 13px; color: var(--text-2); }
+.ai-prompt-action {
+  position: relative;
+  padding: 10px 20px;
+  background: var(--primary);
+  border-radius: var(--r-md);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Recents */
+.recent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+.recent-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.recent-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+.recent-thumb {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+.recent-info { padding: 14px; }
+.recent-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.recent-meta { font-size: 11px; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+.recent-type-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Stats */
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+.stat-label { font-size: 12px; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.stat-val { font-family: var(--font-display); font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
+.stat-trend { font-size: 12px; color: var(--success); }
+
+/* ── STYLE GUIDE ── */
+#styleguide {
+  background: var(--bg);
+  display: none;
+  flex-direction: column;
+  padding: 40px 32px 80px;
+  gap: 60px;
+  overflow-y: auto;
+}
+#styleguide.active { display: flex; }
+
+.sg-section {}
+.sg-section-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.sg-section-desc { color: var(--text-2); font-size: 14px; margin-bottom: 32px; }
+
+/* Colors */
+.color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.color-swatch { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); }
+.color-block { height: 80px; }
+.color-info { padding: 12px; background: var(--surface); }
+.color-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.color-hex { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); }
+.color-usage { font-size: 11px; color: var(--text-2); margin-top: 4px; line-height: 1.4; }
+
+/* Typography */
+.type-scale { display: flex; flex-direction: column; gap: 24px; }
+.type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.type-meta {
+  min-width: 160px;
+  flex-shrink: 0;
+}
+.type-meta-name { font-family: var(--font-mono); font-size: 12px; color: var(--primary); margin-bottom: 4px; }
+.type-meta-spec { font-size: 11px; color: var(--text-3); line-height: 1.5; }
+.type-sample { flex: 1; }
+
+/* Components */
+.component-group { margin-bottom: 40px; }
+.component-group-label { font-size: 13px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }
+.component-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 12px; }
+.component-annotation { font-size: 12px; color: var(--text-3); margin-top: 8px; border-left: 2px solid var(--border); padding-left: 12px; line-height: 1.6; }
+
+/* Btn variants */
+.btn-secondary {
+  height: 44px; padding: 0 20px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--r-md); color: var(--text-1);
+  font-family: var(--font-body); font-size: 14px; font-weight: 500; cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--border-hover); }
+.btn-ghost {
+  height: 44px; padding: 0 20px;
+  background: transparent; border: none;
+  border-radius: var(--r-md); color: var(--text-2);
+  font-family: var(--font-body); font-size: 14px; cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { background: var(--surface-2); color: var(--text-1); }
+.btn-danger {
+  height: 44px; padding: 0 20px;
+  background: rgba(245,75,75,0.1); border: 1px solid rgba(245,75,75,0.3);
+  border-radius: var(--r-md); color: var(--danger);
+  font-family: var(--font-body); font-size: 14px; font-weight: 500; cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-danger:hover { background: rgba(245,75,75,0.2); }
+.btn-sm { height: 32px; padding: 0 14px; font-size: 12px; }
+.btn-lg { height: 52px; padding: 0 28px; font-size: 16px; }
+
+/* Card variants */
+.card-base {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+.card-elevated {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+.card-accent {
+  background: rgba(91,91,245,0.06);
+  border: 1px solid rgba(91,91,245,0.2);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+
+/* Input variants */
+.input-error { border-color: var(--danger) !important; }
+.input-success { border-color: var(--success) !important; }
+
+/* Badges */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 600;
+}
+.badge-primary { background: rgba(91,91,245,0.15); color: var(--primary); }
+.badge-success { background: rgba(34,197,94,0.15); color: var(--success); }
+.badge-warn { background: rgba(245,166,35,0.15); color: var(--warn); }
+.badge-danger { background: rgba(245,75,75,0.15); color: var(--danger); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to { background-position: 200% center; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  #auth { flex-direction: column; }
+  .auth-right { width: 100%; min-width: unset; border-left: none; border-top: 1px solid var(--border); }
+  #dashboard { flex-direction: column; }
+  .dash-sidebar { width: 100%; min-width: unset; flex-direction: row; flex-wrap: wrap; padding: 12px 16px; border-right: none; border-bottom: 1px solid var(--border); overflow-x: auto; }
+  .dash-sidebar-logo { padding: 0 16px 0 0; border-bottom: none; font-size: 17px; }
+  .sidebar-section-label { display: none; }
+  .sidebar-nav-item { padding: 8px 12px; border-radius: var(--r-sm); font-size: 12px; }
+  .sidebar-user { margin-top: 0; padding: 8px 12px; border-top: none; border-left: 1px solid var(--border); margin-left: auto; }
+  .create-modes { grid-template-columns: repeat(2, 1fr); }
+  .stats-row { grid-template-columns: 1fr; }
+  .dash-main { padding: 20px; }
+}
+
+@media (max-width: 600px) {
+  .create-modes { grid-template-columns: repeat(2, 1fr); }
+  .auth-modes { grid-template-columns: repeat(4, 1fr); }
+  .intent-grid { grid-template-columns: repeat(2, 1fr); }
+  .cover-cards { grid-template-columns: 1fr; }
+  .modes-grid { grid-template-columns: repeat(2, 1fr); }
+  .recent-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.empty-state {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 60px 24px; gap: 12px; text-align: center;
+}
+.empty-state-icon { font-size: 48px; opacity: 0.4; }
+.empty-state-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-2); }
+.empty-state-desc { font-size: 13px; color: var(--text-3); max-width: 260px; }
+
+.mobile-note {
+  background: rgba(13,221,212,0.08);
+  border: 1px solid rgba(13,221,212,0.2);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="proto-nav">
+  <div class="proto-nav-brand">Creatix<span>AI</span></div>
+  <div class="proto-nav-tabs">
+    <button class="nav-tab active" onclick="showScreen('cover')">📄 Cover</button>
+    <button class="nav-tab" onclick="showScreen('auth')">🔐 01 Auth</button>
+    <button class="nav-tab" onclick="showScreen('intent')">🎯 Intent</button>
+    <button class="nav-tab" onclick="showScreen('onboarding')">🚀 02 Onboarding</button>
+    <button class="nav-tab" onclick="showScreen('dashboard')">🏠 03 Dashboard</button>
+    <button class="nav-tab" onclick="showScreen('styleguide')">🎨 04 Style Guide</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════
+     COVER
+════════════════════════════════ -->
+<div class="screen active" id="cover">
+  <div class="cover-mesh"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-content">
+    <div class="cover-badge"><span class="cover-badge-dot"></span> VYROTHON · NUST NSTP · 18 April 2026</div>
+    <h1 class="cover-title">Creatix<em>AI</em><br/><span class="teal">Design</span> Case</h1>
+    <p class="cover-sub">A complete product design system for an AI-first creative platform — signup, onboarding, dashboard, and a supporting style guide. Designed to convert new users in under 60 seconds.</p>
+
+    <div class="cover-meta">
+      <div class="meta-pill">👤 <strong>Mohammad Arqam Javed</strong></div>
+      <div class="meta-pill">🎨 Domain: <strong>Product Design</strong></div>
+      <div class="meta-pill">🏆 <strong>VYROTHON 2026</strong></div>
+      <div class="meta-pill">🏛 <strong>NUST NSTP</strong></div>
+    </div>
+
+    <div class="cover-cards">
+      <div class="cover-card">
+        <div class="cover-card-label">Design Approach</div>
+        <div class="cover-card-title">Progressive Disclosure</div>
+        <p>Eight creation modes are too much for a single reveal. The design sequences the product: auth → intent → 3-screen onboarding → personalised dashboard. Each step reveals only what the user needs right now.</p>
+      </div>
+      <div class="cover-card">
+        <div class="cover-card-label">Key Decision</div>
+        <div class="cover-card-title">Intent-First Personalisation</div>
+        <p>Before showing any feature, we ask who the user is. Their answer reorders the dashboard's creation modes — a marketer sees Slides & Images first; a developer sees Docs & Sheets first. Same product, different entrance.</p>
+      </div>
+      <div class="cover-card">
+        <div class="cover-card-label">Onboarding Philosophy</div>
+        <div class="cover-card-title">Create, Don't Teach</div>
+        <p>Screen 3 of onboarding asks the user to create something immediately. Instead of a feature tour, users leave the onboarding with an artifact they made — the strongest possible activation signal.</p>
+      </div>
+    </div>
+
+    <div class="cover-ab">
+      <div class="cover-ab-label">A/B Test Write-Up</div>
+      <h3>Test: Prompt-First vs. Mode-First Onboarding Screen 3</h3>
+      <p style="color:var(--text-2);font-size:14px;line-height:1.7;margin-bottom:0">
+        <strong>Hypothesis:</strong> Presenting a free-text prompt box on onboarding screen 3 (Variant A, current) will outperform showing eight creation mode cards (Variant B) in driving first-content creation, because an open prompt lowers the decision overhead — users don't need to choose a mode before they start creating.
+      </p>
+      <div class="cover-ab-grid">
+        <div class="ab-chip"><div class="ab-chip-label">Metric</div><div class="ab-chip-val"><strong>First-content creation rate</strong> within session</div></div>
+        <div class="ab-chip"><div class="ab-chip-label">Expected Result</div><div class="ab-chip-val">Variant A (prompt-first) achieves <strong>+12–18% higher</strong> activation vs Variant B</div></div>
+        <div class="ab-chip"><div class="ab-chip-label">Why it Matters</div><div class="ab-chip-val">First content creation is the strongest predictor of <strong>Day-7 retention</strong></div></div>
+        <div class="ab-chip"><div class="ab-chip-label">Secondary Signal</div><div class="ab-chip-val">Track <strong>mode distribution</strong> — what do users create when given freedom?</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     AUTH
+════════════════════════════════ -->
+<div class="screen" id="auth">
+  <!-- Left: Value prop -->
+  <div class="auth-left">
+    <div class="auth-bg"></div>
+    <div class="auth-bg-grid"></div>
+    <div class="auth-left-content">
+      <div class="auth-logo">Creatix<span>AI</span></div>
+      <h2 class="auth-tagline">Create anything.<br/><em>With one tool.</em></h2>
+      <p class="auth-desc">Docs, slides, sheets, images, video, music — all with AI that actually understands what you're building. One workspace. Eight superpowers.</p>
+      <div class="auth-modes">
+        <div class="auth-mode-chip"><span class="icon">📝</span>Docs</div>
+        <div class="auth-mode-chip"><span class="icon">🖼</span>Slides</div>
+        <div class="auth-mode-chip"><span class="icon">📊</span>Sheets</div>
+        <div class="auth-mode-chip"><span class="icon">🎨</span>Images</div>
+        <div class="auth-mode-chip"><span class="icon">🎬</span>Video</div>
+        <div class="auth-mode-chip"><span class="icon">🎵</span>Music</div>
+        <div class="auth-mode-chip"><span class="icon">🔊</span>Audio</div>
+        <div class="auth-mode-chip"><span class="icon">✨</span>+AI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Form -->
+  <div class="auth-right">
+    <div class="auth-form">
+      <h2 class="auth-form-title">Get started free</h2>
+      <p class="auth-form-sub">Already have an account? <a href="#">Sign in</a></p>
+
+      <div class="sso-row">
+        <button class="sso-btn">
+          <svg class="sso-icon" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Google
+        </button>
+        <button class="sso-btn">
+          <svg class="sso-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </button>
+      </div>
+
+      <div class="divider">or continue with email</div>
+
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input class="form-input" type="email" placeholder="you@company.com" id="auth-email"/>
+        <div class="form-error" id="auth-email-error">Please enter a valid email address.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="Min. 8 characters" id="auth-pass"/>
+        <div class="form-hint">Must include a number or symbol</div>
+        <div class="form-error" id="auth-pass-error">Password must be at least 8 characters.</div>
+      </div>
+
+      <button class="btn-primary" onclick="handleSignup()">Create free account →</button>
+      <div class="form-terms">By creating an account you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</div>
+    </div>
+
+    <div class="auth-annotation">
+      <strong>📌 Design Annotation:</strong> The left panel shows the 8 creation modes as a grid — signalling product breadth without a feature dump. The value prop ("One tool. Eight superpowers.") is visible before the user interacts with the form. SSO is top-of-form to reduce friction for 60%+ of users who prefer it. Password hints are inline, not a tooltip — reduces cognitive load.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     INTENT
+════════════════════════════════ -->
+<div class="screen" id="intent">
+  <div class="intent-content">
+    <div class="intent-step">Step 1 of 1 · Takes 10 seconds</div>
+    <h2 class="intent-title">What brings you to Creatix?</h2>
+    <p class="intent-sub">We'll personalise your workspace based on your answer. You can always change it later.</p>
+
+    <div class="intent-grid" id="intent-grid">
+      <div class="intent-card" onclick="selectIntent(this)" data-role="creator">
+        <span class="icon">🎨</span>
+        <div class="intent-card-name">Creator</div>
+        <div class="intent-card-desc">Content, visuals, media production</div>
+      </div>
+      <div class="intent-card" onclick="selectIntent(this)" data-role="marketer">
+        <span class="icon">📣</span>
+        <div class="intent-card-name">Marketer</div>
+        <div class="intent-card-desc">Campaigns, decks, social assets</div>
+      </div>
+      <div class="intent-card" onclick="selectIntent(this)" data-role="student">
+        <span class="icon">🎓</span>
+        <div class="intent-card-name">Student</div>
+        <div class="intent-card-desc">Essays, presentations, research</div>
+      </div>
+      <div class="intent-card" onclick="selectIntent(this)" data-role="developer">
+        <span class="icon">💻</span>
+        <div class="intent-card-name">Developer</div>
+        <div class="intent-card-desc">Docs, specs, technical writing</div>
+      </div>
+      <div class="intent-card" onclick="selectIntent(this)" data-role="business">
+        <span class="icon">💼</span>
+        <div class="intent-card-name">Business</div>
+        <div class="intent-card-desc">Reports, proposals, analysis</div>
+      </div>
+      <div class="intent-card" onclick="selectIntent(this)" data-role="other">
+        <span class="icon">✨</span>
+        <div class="intent-card-name">Something else</div>
+        <div class="intent-card-desc">Tell us in your own words</div>
+      </div>
+    </div>
+
+    <div class="intent-or">or type your role</div>
+    <div class="intent-input-row">
+      <input class="intent-input" placeholder="e.g. Podcast producer, UX Designer…" id="intent-custom"/>
+      <button class="intent-continue" onclick="goToDashboard()">Continue →</button>
+    </div>
+
+    <div class="intent-annotation">
+      <strong>📌 Annotation:</strong> This screen avoids the word "survey". Cards use role identity labels, not feature names — people recognise themselves faster. The grid is scannable in &lt;3 seconds. Selecting a card immediately enables the Continue button (not shown for brevity). The custom input handles edge cases without bloating the card set.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     ONBOARDING
+════════════════════════════════ -->
+<div class="screen" id="onboarding">
+  <div class="ob-container">
+
+    <!-- Progress -->
+    <div class="ob-progress">
+      <div class="ob-step-dot active" id="dot-1" onclick="goObStep(1)">1</div>
+      <div class="ob-step-line" id="line-1"></div>
+      <div class="ob-step-dot" id="dot-2" onclick="goObStep(2)">2</div>
+      <div class="ob-step-line" id="line-2"></div>
+      <div class="ob-step-dot" id="dot-3" onclick="goObStep(3)">3</div>
+    </div>
+
+    <!-- Step 1: Welcome -->
+    <div class="ob-step active" id="ob-1">
+      <div class="ob-step-label">Welcome to Creatix</div>
+      <h2 class="ob-title">Your AI creative<br/><em>co-pilot</em> is ready</h2>
+      <p class="ob-sub">Everything you create — from a pitch deck to a podcast — lives in one workspace. Here's what that looks like.</p>
+
+      <div class="ob-hero-card">
+        <span class="ob-hero-emoji">🚀</span>
+        <h3>One workspace. Eight creation modes.</h3>
+        <p>Creatix gives you documents, slides, spreadsheets, images, videos, music, audio, and an AI assistant — all connected. Create in any mode and reference your work across all of them.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:16px;text-align:left">
+          <div style="font-size:20px;margin-bottom:8px">⚡</div>
+          <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:4px">AI-native</div>
+          <div style="font-size:12px;color:var(--text-2)">Every mode has AI built in — not bolted on</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:16px;text-align:left">
+          <div style="font-size:20px;margin-bottom:8px">🔗</div>
+          <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:4px">Cross-mode</div>
+          <div style="font-size:12px;color:var(--text-2)">Pull data from Sheets into Docs, Docs into Slides</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:16px;text-align:left">
+          <div style="font-size:20px;margin-bottom:8px">☁️</div>
+          <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:4px">Auto-saved</div>
+          <div style="font-size:12px;color:var(--text-2)">Everything syncs in real time, always</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:16px;text-align:left">
+          <div style="font-size:20px;margin-bottom:8px">🤝</div>
+          <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:4px">Collaborative</div>
+          <div style="font-size:12px;color:var(--text-2)">Share, comment, co-edit with your team</div>
+        </div>
+      </div>
+
+      <div class="ob-nav">
+        <button class="ob-btn-next" onclick="goObStep(2)">Explore creation modes →</button>
+      </div>
+
+      <div class="ob-annotation">📌 <strong>Annotation:</strong> Screen 1 establishes orientation — not feature education. Users learn the mental model ("eight modes, one workspace") not a feature list. Four pillars are scannable in &lt;5 seconds. No tutorial, no video, no popups.</div>
+    </div>
+
+    <!-- Step 2: Modes -->
+    <div class="ob-step" id="ob-2">
+      <div class="ob-step-label">What you can create</div>
+      <h2 class="ob-title">Eight modes.<br/>Infinite <em>outputs.</em></h2>
+      <p class="ob-sub">Tap any mode to see what it creates. They all live in the same workspace.</p>
+
+      <div class="modes-grid">
+        <div class="mode-card" style="--mode-color:#5B5BF5"><span class="mode-icon">📝</span><div class="mode-name">Docs</div><div class="mode-desc">Long-form writing with AI drafting, editing, and summarisation.</div></div>
+        <div class="mode-card" style="--mode-color:#0DDDD4"><span class="mode-icon">🖼</span><div class="mode-name">Slides</div><div class="mode-desc">Pitch decks and presentations built from a prompt.</div></div>
+        <div class="mode-card" style="--mode-color:#F5A623"><span class="mode-icon">📊</span><div class="mode-name">Sheets</div><div class="mode-desc">Smart spreadsheets with AI formulas and analysis.</div></div>
+        <div class="mode-card" style="--mode-color:#E040FB"><span class="mode-icon">🎨</span><div class="mode-name">Images</div><div class="mode-desc">Generate, edit, and stylise images with a prompt.</div></div>
+        <div class="mode-card" style="--mode-color:#F54B4B"><span class="mode-icon">🎬</span><div class="mode-name">Video</div><div class="mode-desc">Short-form video generation from text or images.</div></div>
+        <div class="mode-card" style="--mode-color:#22C55E"><span class="mode-icon">🎵</span><div class="mode-name">Music</div><div class="mode-desc">AI-composed music for any mood or project.</div></div>
+        <div class="mode-card" style="--mode-color:#F59E0B"><span class="mode-icon">🔊</span><div class="mode-name">Audio</div><div class="mode-desc">Voiceovers, podcasts, and sound design.</div></div>
+        <div class="mode-card" style="--mode-color:#6366F1"><span class="mode-icon">🤖</span><div class="mode-name">AI Chat</div><div class="mode-desc">A context-aware assistant connected to all your work.</div></div>
+      </div>
+
+      <div class="ob-nav" style="margin-top:8px">
+        <button class="ob-btn-back" onclick="goObStep(1)">← Back</button>
+        <button class="ob-btn-next" onclick="goObStep(3)">Create your first thing →</button>
+      </div>
+
+      <div class="ob-annotation" style="margin-top:24px">📌 <strong>Annotation:</strong> Each mode card has a distinct accent colour — creating memorable visual anchors that reappear in the dashboard. The mode descriptions are benefit-led ("built from a prompt") not feature-led ("template engine"). Users who tap a card get a modal preview — not shown here, but a meaningful interaction for engaged users.</div>
+    </div>
+
+    <!-- Step 3: First Create -->
+    <div class="ob-step" id="ob-3">
+      <div class="ob-step-label">Let's make something</div>
+      <h2 class="ob-title">What do you want<br/>to <em>create first?</em></h2>
+      <p class="ob-sub">Describe anything. Creatix will pick the right mode and build a first draft in seconds.</p>
+
+      <div class="first-create-panel">
+        <div class="fc-prompt-label">Your idea →</div>
+        <textarea class="fc-prompt-area" placeholder="e.g. A pitch deck for a mobile app startup targeting Gen Z users..."></textarea>
+        <div class="fc-type-row">
+          <div class="fc-type-chip active">✨ Let AI decide</div>
+          <div class="fc-type-chip">📝 Doc</div>
+          <div class="fc-type-chip">🖼 Slides</div>
+          <div class="fc-type-chip">🎨 Image</div>
+          <div class="fc-type-chip">📊 Sheet</div>
+          <div class="fc-type-chip">🎬 Video</div>
+        </div>
+        <div class="fc-actions">
+          <button class="btn-generate" onclick="goToDashboard()">⚡ Generate & open dashboard</button>
+          <button class="btn-skip" onclick="goToDashboard()">Skip for now</button>
+        </div>
+      </div>
+
+      <div class="mobile-note">📱 <strong>Mobile:</strong> On mobile, this screen collapses to a single-line prompt input with a keyboard-up CTA, reducing scroll and keeping the action above the fold.</div>
+
+      <div class="ob-nav" style="margin-top:16px">
+        <button class="ob-btn-back" onclick="goObStep(2)">← Back</button>
+      </div>
+
+      <div class="ob-annotation" style="margin-top:24px">📌 <strong>Annotation:</strong> The "Skip for now" is present but de-emphasised — not hidden. Users who skip are not penalised; they land on a dashboard with an empty state that repeats this prompt. The "Let AI decide" chip is selected by default — routing the user's first creation through the model's best guess removes the mode-choice decision entirely.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     DASHBOARD
+════════════════════════════════ -->
+<div class="screen" id="dashboard">
+  <!-- Sidebar -->
+  <div class="dash-sidebar">
+    <div class="dash-sidebar-logo">Creatix<span>AI</span></div>
+
+    <div class="sidebar-section-label">Workspace</div>
+    <div class="sidebar-nav-item active"><span class="sidebar-nav-icon">🏠</span> Home</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">⭐</span> Favourites</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">🕐</span> Recent</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">🗂</span> All Projects</div>
+
+    <div class="sidebar-section-label">Create</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">📝</span> Docs</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">🖼</span> Slides</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">📊</span> Sheets</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">🎨</span> Images</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">🎬</span> Video</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">🎵</span> Music</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">🔊</span> Audio</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">🤖</span> AI Chat <span class="sidebar-badge">NEW</span></div>
+
+    <div class="sidebar-section-label">Team</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">👥</span> Shared with me</div>
+    <div class="sidebar-nav-item"><span class="sidebar-nav-icon">🔗</span> Integrations</div>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">MA</div>
+      <div><div class="user-name">Arqam Javed</div><div class="user-plan">Free plan</div></div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="dash-main">
+    <div class="dash-header">
+      <div>
+        <div class="dash-greeting">Good morning, <span>Arqam</span> 👋</div>
+        <div class="dash-date">Saturday, 18 April 2026 · Your workspace is ready</div>
+      </div>
+      <div class="dash-search">
+        <span class="dash-search-icon">🔍</span>
+        <span class="dash-search-text">Search everything…</span>
+        <span class="dash-search-kbd">⌘K</span>
+      </div>
+    </div>
+
+    <!-- AI prompt bar -->
+    <div class="ai-prompt-bar">
+      <span class="ai-prompt-icon">✨</span>
+      <div class="ai-prompt-text">
+        <h4>What do you want to create today?</h4>
+        <p>Describe anything — Creatix will pick the right mode and start building</p>
+      </div>
+      <div class="ai-prompt-action">Start creating →</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Projects created</div><div class="stat-val">0</div><div class="stat-trend">Start your first →</div></div>
+      <div class="stat-card"><div class="stat-label">AI tokens used</div><div class="stat-val">0</div><div class="stat-trend" style="color:var(--text-3)">50,000 available</div></div>
+      <div class="stat-card"><div class="stat-label">Streak</div><div class="stat-val">🔥 0</div><div class="stat-trend" style="color:var(--text-3)">Create today to start</div></div>
+    </div>
+
+    <!-- Create modes -->
+    <div>
+      <div class="section-row">
+        <div class="section-title">Create new</div>
+      </div>
+      <div class="create-modes">
+        <div class="create-mode-card" style="--mode-color:#5B5BF5">
+          <span class="create-mode-icon">📝</span>
+          <div class="create-mode-name">Document</div>
+          <div class="create-mode-desc">AI-drafted long-form content</div>
+        </div>
+        <div class="create-mode-card" style="--mode-color:#0DDDD4">
+          <span class="create-mode-icon">🖼</span>
+          <div class="create-mode-name">Presentation</div>
+          <div class="create-mode-desc">Pitch decks from a prompt</div>
+        </div>
+        <div class="create-mode-card" style="--mode-color:#F5A623">
+          <span class="create-mode-icon">📊</span>
+          <div class="create-mode-name">Spreadsheet</div>
+          <div class="create-mode-desc">Smart tables and analysis</div>
+        </div>
+        <div class="create-mode-card" style="--mode-color:#E040FB">
+          <span class="create-mode-icon">🎨</span>
+          <div class="create-mode-name">Image</div>
+          <div class="create-mode-desc">Generate and edit visuals</div>
+          <div class="create-mode-badge">Popular</div>
+        </div>
+        <div class="create-mode-card" style="--mode-color:#F54B4B">
+          <span class="create-mode-icon">🎬</span>
+          <div class="create-mode-name">Video</div>
+          <div class="create-mode-desc">AI video from text or image</div>
+          <div class="create-mode-badge">Beta</div>
+        </div>
+        <div class="create-mode-card" style="--mode-color:#22C55E">
+          <span class="create-mode-icon">🎵</span>
+          <div class="create-mode-name">Music</div>
+          <div class="create-mode-desc">Compose tracks with AI</div>
+        </div>
+        <div class="create-mode-card" style="--mode-color:#F59E0B">
+          <span class="create-mode-icon">🔊</span>
+          <div class="create-mode-name">Audio</div>
+          <div class="create-mode-desc">Voiceovers and sound design</div>
+        </div>
+        <div class="create-mode-card" style="--mode-color:#6366F1">
+          <span class="create-mode-icon">🤖</span>
+          <div class="create-mode-name">AI Chat</div>
+          <div class="create-mode-desc">Context-aware assistant</div>
+          <div class="create-mode-badge">New</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent (empty state) -->
+    <div>
+      <div class="section-row">
+        <div class="section-title">Recent projects</div>
+        <a class="section-link">View all</a>
+      </div>
+      <div class="empty-state" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl)">
+        <div class="empty-state-icon">📂</div>
+        <div class="empty-state-title">No projects yet</div>
+        <div class="empty-state-desc">Create your first project above and it'll appear here</div>
+        <button class="btn-primary" style="width:auto;padding:0 24px;margin-top:8px" onclick="showScreen('onboarding');goObStep(3)">Create something ✨</button>
+      </div>
+    </div>
+
+    <div style="background:var(--surface-2);border-radius:var(--r-lg);padding:16px 20px;font-size:12px;color:var(--text-2);border-left:3px solid var(--primary)">
+      📌 <strong>Dashboard Annotation:</strong> The AI prompt bar is the highest-priority element — it sits above the creation mode grid. The 8 modes each carry their onboarding accent colour, building visual memory. The empty-state CTA is action-oriented ("Create something") not form-oriented ("Add a project"). The sidebar gives one-click access to all 8 modes at all times. Greeting uses first name for warmth.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     STYLE GUIDE
+════════════════════════════════ -->
+<div class="screen" id="styleguide">
+
+  <div style="margin-bottom:8px">
+    <h1 style="font-family:var(--font-display);font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-2px;margin-bottom:8px">Creatix AI <span style="color:var(--primary)">Style Guide</span></h1>
+    <p style="color:var(--text-2);font-size:16px;max-width:600px">The design system that powers the Creatix product. All tokens, components, and patterns are documented below. Annotated for handoff.</p>
+    <div style="margin-top:12px;font-size:12px;color:var(--text-3);font-family:var(--font-mono)">Author: Mohammad Arqam Javed · VYROTHON 2026 · NUST NSTP</div>
+  </div>
+
+  <!-- ── COLORS ── -->
+  <div class="sg-section">
+    <div class="sg-section-title">01 Colour System</div>
+    <p class="sg-section-desc">A dark-mode-first palette. Two primaries (indigo + cyan), semantic state colours, and a neutral ramp built on a blue-tinted black base. All contrast ratios meet WCAG AA minimum (4.5:1) on the dark surface.</p>
+
+    <p style="font-size:13px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px">Brand</p>
+    <div class="color-grid" style="margin-bottom:32px">
+      <div class="color-swatch"><div class="color-block" style="background:#5B5BF5"></div><div class="color-info"><div class="color-name">Primary</div><div class="color-hex">#5B5BF5</div><div class="color-usage">CTAs, active states, links, accent borders</div></div></div>
+      <div class="color-swatch"><div class="color-block" style="background:#0DDDD4"></div><div class="color-info"><div class="color-name">Accent / Teal</div><div class="color-hex">#0DDDD4</div><div class="color-usage">Secondary highlights, badges, live indicators</div></div></div>
+      <div class="color-swatch"><div class="color-block" style="background:linear-gradient(135deg,#5B5BF5,#0DDDD4)"></div><div class="color-info"><div class="color-name">Brand Gradient</div><div class="color-hex">Primary → Accent</div><div class="color-usage">Hero backgrounds, avatar fills, special CTAs</div></div></div>
+    </div>
+
+    <p style="font-size:13px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px">Surfaces</p>
+    <div class="color-grid" style="margin-bottom:32px">
+      <div class="color-swatch"><div class="color-block" style="background:#08080F;border:1px solid #222"></div><div class="color-info"><div class="color-name">Background</div><div class="color-hex">#08080F</div><div class="color-usage">Base page background</div></div></div>
+      <div class="color-swatch"><div class="color-block" style="background:#111119"></div><div class="color-info"><div class="color-name">Surface</div><div class="color-hex">#111119</div><div class="color-usage">Cards, sidebars, panels</div></div></div>
+      <div class="color-swatch"><div class="color-block" style="background:#1A1A27"></div><div class="color-info"><div class="color-name">Surface 2</div><div class="color-hex">#1A1A27</div><div class="color-usage">Elevated cards, modals, hover states</div></div></div>
+      <div class="color-swatch"><div class="color-block" style="background:#22223A"></div><div class="color-info"><div class="color-name">Surface 3</div><div class="color-hex">#22223A</div><div class="color-usage">Active inputs, deep nested elements</div></div></div>
+    </div>
+
+    <p style="font-size:13px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px">Text</p>
+    <div class="color-grid" style="margin-bottom:32px">
+      <div class="color-swatch"><div class="color-block" style="background:#F0F0FF"></div><div class="color-info"><div class="color-name">Text 1</div><div class="color-hex">#F0F0FF</div><div class="color-usage">Headings, primary labels</div></div></div>
+      <div class="color-swatch"><div class="color-block" style="background:#9999BB"></div><div class="color-info"><div class="color-name">Text 2</div><div class="color-hex">#9999BB</div><div class="color-usage">Body copy, descriptions</div></div></div>
+      <div class="color-swatch"><div class="color-block" style="background:#55556A"></div><div class="color-info"><div class="color-name">Text 3</div><div class="color-hex">#55556A</div><div class="color-usage">Placeholders, metadata, labels</div></div></div>
+    </div>
+
+    <p style="font-size:13px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px">Semantic</p>
+    <div class="color-grid">
+      <div class="color-swatch"><div class="color-block" style="background:#22C55E"></div><div class="color-info"><div class="color-name">Success</div><div class="color-hex">#22C55E</div><div class="color-usage">Confirmations, positive trends</div></div></div>
+      <div class="color-swatch"><div class="color-block" style="background:#F5A623"></div><div class="color-info"><div class="color-name">Warning</div><div class="color-hex">#F5A623</div><div class="color-usage">Alerts, quota warnings, beta tags</div></div></div>
+      <div class="color-swatch"><div class="color-block" style="background:#F54B4B"></div><div class="color-info"><div class="color-name">Danger</div><div class="color-hex">#F54B4B</div><div class="color-usage">Errors, destructive actions</div></div></div>
+    </div>
+
+    <div style="margin-top:20px;background:var(--surface-2);border-radius:var(--r-md);padding:14px 18px;font-size:12px;color:var(--text-2);border-left:3px solid var(--accent)">
+      <strong>Mode accent colours</strong> — each of the 8 creation modes has its own accent: Docs #5B5BF5 · Slides #0DDDD4 · Sheets #F5A623 · Images #E040FB · Video #F54B4B · Music #22C55E · Audio #F59E0B · AI Chat #6366F1. These appear on card top-borders and are consistent across onboarding and dashboard.
+    </div>
+  </div>
+
+  <!-- ── TYPOGRAPHY ── -->
+  <div class="sg-section">
+    <div class="sg-section-title">02 Typography</div>
+    <p class="sg-section-desc">Two fonts. Syne for display — its geometric, architectural quality gives Creatix an editorial identity. DM Sans for body — optically balanced for reading at 13–16px. JetBrains Mono for code and metadata.</p>
+
+    <div class="type-scale">
+      <div class="type-row">
+        <div class="type-meta"><div class="type-meta-name">display-xl</div><div class="type-meta-spec">Syne 800<br/>96px / -4px<br/>line-height 0.92</div></div>
+        <div class="type-sample" style="font-family:var(--font-display);font-size:clamp(42px,7vw,80px);font-weight:800;letter-spacing:-3px;line-height:0.95">Creatix</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="type-meta-name">display-lg</div><div class="type-meta-spec">Syne 800<br/>56px / -2px<br/>line-height 1.0</div></div>
+        <div class="type-sample" style="font-family:var(--font-display);font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-2px">Create anything</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="type-meta-name">heading-xl</div><div class="type-meta-spec">Syne 800<br/>32px / -1px<br/>line-height 1.1</div></div>
+        <div class="type-sample" style="font-family:var(--font-display);font-size:clamp(22px,3.5vw,32px);font-weight:800;letter-spacing:-1px">Your AI co-pilot is ready</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="type-meta-name">heading-md</div><div class="type-meta-spec">Syne 700<br/>20px / -0.5px<br/>line-height 1.2</div></div>
+        <div class="type-sample" style="font-family:var(--font-display);font-size:20px;font-weight:700;letter-spacing:-0.5px">Eight modes, one workspace</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="type-meta-name">label-caps</div><div class="type-meta-spec">DM Sans 600<br/>11px / +1px<br/>UPPERCASE</div></div>
+        <div class="type-sample" style="font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-3)">Section label · Step 1 of 3 · Create</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="type-meta-name">body-lg</div><div class="type-meta-spec">DM Sans 400<br/>17px / 0<br/>line-height 1.7</div></div>
+        <div class="type-sample" style="font-size:17px;line-height:1.7;color:var(--text-2)">Everything you create — from a pitch deck to a podcast — lives in one workspace designed for AI-native creation.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="type-meta-name">body-md</div><div class="type-meta-spec">DM Sans 400<br/>15px / 0<br/>line-height 1.6</div></div>
+        <div class="type-sample" style="font-size:15px;line-height:1.6;color:var(--text-2)">Creatix gives you eight creation modes that share a single workspace, AI context, and file system.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="type-meta-name">body-sm</div><div class="type-meta-spec">DM Sans 400<br/>13px / 0<br/>line-height 1.5</div></div>
+        <div class="type-sample" style="font-size:13px;line-height:1.5;color:var(--text-2)">Use for metadata, timestamps, secondary labels, card descriptions, and table body text.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta"><div class="type-meta-name">mono</div><div class="type-meta-spec">JetBrains Mono 400<br/>12px / 0<br/>line-height 1.5</div></div>
+        <div class="type-sample" style="font-family:var(--font-mono);font-size:12px;line-height:1.5;color:var(--primary)">#08080F · --bg · ⌘K · v2.4.1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── COMPONENTS ── -->
+  <div class="sg-section">
+    <div class="sg-section-title">03 Components</div>
+    <p class="sg-section-desc">All interactive components used across the Creatix flow. Each variant is annotated with its use case and state rules.</p>
+
+    <!-- Buttons -->
+    <div class="component-group">
+      <div class="component-group-label">Buttons</div>
+      <div class="component-row">
+        <button class="btn-primary" style="width:auto;padding:0 24px">Primary</button>
+        <button class="btn-secondary">Secondary</button>
+        <button class="btn-ghost">Ghost</button>
+        <button class="btn-danger">Danger</button>
+      </div>
+      <div class="component-row">
+        <button class="btn-primary btn-sm" style="width:auto;padding:0 16px">Small Primary</button>
+        <button class="btn-primary" style="width:auto;padding:0 24px">Default Primary</button>
+        <button class="btn-primary btn-lg" style="width:auto">Large Primary</button>
+      </div>
+      <div class="component-annotation">
+        <strong>Button rules:</strong> Primary (#5B5BF5) for the single most important action per screen. Secondary for secondary actions. Ghost for navigation-like actions. Danger for destructive operations only. Always have clear hierarchy — never two Primary buttons side-by-side. Disabled state: 40% opacity, cursor not-allowed.
+      </div>
+    </div>
+
+    <!-- Inputs -->
+    <div class="component-group">
+      <div class="component-group-label">Inputs</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:12px">
+        <div>
+          <div class="form-label">Default</div>
+          <input class="form-input" placeholder="Placeholder text…"/>
+        </div>
+        <div>
+          <div class="form-label">Focused (simulated)</div>
+          <input class="form-input" style="border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)" value="user@email.com"/>
+        </div>
+        <div>
+          <div class="form-label">Error</div>
+          <input class="form-input input-error" value="invalid"/>
+          <div style="font-size:12px;color:var(--danger);margin-top:6px">Please enter a valid email address.</div>
+        </div>
+        <div>
+          <div class="form-label">Success</div>
+          <input class="form-input input-success" value="arqam@nust.edu.pk"/>
+          <div style="font-size:12px;color:var(--success);margin-top:6px">Looks good!</div>
+        </div>
+      </div>
+      <div class="component-annotation">
+        <strong>Input rules:</strong> Height 44px, border-radius 14px. Focus ring: 3px solid rgba(primary, 0.35). Error state shown on blur, not on keystroke. Labels are always above the input, never floating. Placeholder text is lighter than body text (--text-3).
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="component-group">
+      <div class="component-group-label">Cards</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:12px">
+        <div class="card-base"><div style="font-size:12px;color:var(--text-3);margin-bottom:8px">Base card</div><div style="font-family:var(--font-display);font-weight:700">Used for creation mode tiles, intent cards</div></div>
+        <div class="card-elevated"><div style="font-size:12px;color:var(--text-3);margin-bottom:8px">Elevated card</div><div style="font-family:var(--font-display);font-weight:700">Modals, popovers, dropdowns</div></div>
+        <div class="card-accent"><div style="font-size:12px;color:var(--primary);margin-bottom:8px">Accent card</div><div style="font-family:var(--font-display);font-weight:700">AI prompt bars, featured items</div></div>
+      </div>
+      <div class="component-annotation">
+        <strong>Card rules:</strong> Border-radius 20px (--r-lg). All cards have a 1px solid border at --border opacity. Hover state adds transform: translateY(-2px). Never use box-shadow as the primary affordance — always pair with border-color change. Mode cards use a 2px top-border accent in the mode's colour.
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="component-group">
+      <div class="component-group-label">Badges & Chips</div>
+      <div class="component-row">
+        <span class="badge badge-primary">✨ Primary</span>
+        <span class="badge badge-success">✓ Success</span>
+        <span class="badge badge-warn">⚠ Warning</span>
+        <span class="badge badge-danger">✕ Danger</span>
+      </div>
+      <div class="component-annotation">
+        <strong>Badge rules:</strong> Background is 15% opacity of the semantic colour. Text is the full semantic colour. Always border-radius 100px (pill shape). Used for status, labels, and counts — never for interactive actions.
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="component-group">
+      <div class="component-group-label">Navigation</div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden">
+        <div style="padding:12px 20px;border-bottom:1px solid var(--border);font-family:var(--font-display);font-weight:800;font-size:17px">Creatix<span style="color:var(--primary)">AI</span></div>
+        <div class="sidebar-nav-item active" style="margin:8px 0 0"><span class="sidebar-nav-icon">🏠</span> Home <small style="margin-left:auto;color:var(--text-3);font-size:11px">← active</small></div>
+        <div class="sidebar-nav-item"><span class="sidebar-nav-icon">📝</span> Docs</div>
+        <div class="sidebar-nav-item"><span class="sidebar-nav-icon">🎨</span> Images <span class="sidebar-badge">New</span></div>
+      </div>
+      <div class="component-annotation">
+        <strong>Navigation rules:</strong> Active item has a 3px left border accent (--primary) and a subtle background (rgba(primary, 0.08)). Hover state: background var(--surface-2). Section labels are uppercase, 10px, --text-3. Badge uses the primary colour for "New"/"Beta" status — not semantic badges.
+      </div>
+    </div>
+
+    <!-- Spacing & Radius -->
+    <div class="component-group">
+      <div class="component-group-label">Spacing & Radius</div>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:12px;align-items:flex-end">
+        <div style="text-align:center"><div style="width:8px;height:8px;background:var(--primary);border-radius:2px;margin:0 auto 6px"></div><div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono)">4px</div></div>
+        <div style="text-align:center"><div style="width:12px;height:12px;background:var(--primary);border-radius:2px;margin:0 auto 6px"></div><div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono)">8px</div></div>
+        <div style="text-align:center"><div style="width:16px;height:16px;background:var(--primary);border-radius:2px;margin:0 auto 6px"></div><div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono)">12px</div></div>
+        <div style="text-align:center"><div style="width:24px;height:24px;background:var(--primary);border-radius:2px;margin:0 auto 6px"></div><div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono)">16px</div></div>
+        <div style="text-align:center"><div style="width:32px;height:32px;background:var(--primary);border-radius:2px;margin:0 auto 6px"></div><div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono)">24px</div></div>
+        <div style="text-align:center"><div style="width:48px;height:48px;background:var(--primary);border-radius:2px;margin:0 auto 6px"></div><div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono)">32px</div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:12px">
+        <div style="background:var(--surface-2);width:60px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-3)">8px</div>
+        <div style="background:var(--surface-2);width:60px;height:40px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-3)">14px</div>
+        <div style="background:var(--surface-2);width:60px;height:40px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-3)">20px</div>
+        <div style="background:var(--surface-2);width:60px;height:40px;border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-3)">28px</div>
+        <div style="background:var(--surface-2);width:80px;height:40px;border-radius:100px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-3)">pill</div>
+      </div>
+      <div class="component-annotation">
+        <strong>Spacing scale:</strong> 4, 8, 12, 16, 20, 24, 32, 40, 48, 60, 80px — base-4 system. <strong>Radius tokens:</strong> --r-sm: 8px (chips, badges, small elements) · --r-md: 14px (inputs, buttons) · --r-lg: 20px (cards) · --r-xl: 28px (modals, hero panels) · 100px (pills, avatars).
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:40px 0;color:var(--text-3);font-size:13px;border-top:1px solid var(--border)">
+    Creatix AI Design System · Mohammad Arqam Javed · VYROTHON 2026 · NUST NSTP · 18 April 2026
+  </div>
+</div>
+
+<script>
+// Screen navigation
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabs = document.querySelectorAll('.nav-tab');
+  const screenOrder = ['cover','auth','intent','onboarding','dashboard','styleguide'];
+  const idx = screenOrder.indexOf(id);
+  if (idx >= 0) tabs[idx].classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// Auth validation
+function handleSignup() {
+  const email = document.getElementById('auth-email').value;
+  const pass = document.getElementById('auth-pass').value;
+  let valid = true;
+  if (!email || !email.includes('@')) {
+    document.getElementById('auth-email-error').classList.add('show');
+    valid = false;
+  } else {
+    document.getElementById('auth-email-error').classList.remove('show');
+  }
+  if (!pass || pass.length < 8) {
+    document.getElementById('auth-pass-error').classList.add('show');
+    valid = false;
+  } else {
+    document.getElementById('auth-pass-error').classList.remove('show');
+  }
+  if (valid) showScreen('intent');
+}
+
+// Intent
+function selectIntent(el) {
+  document.querySelectorAll('.intent-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function goToDashboard() {
+  showScreen('dashboard');
+}
+
+// Onboarding steps
+let currentObStep = 1;
+function goObStep(n) {
+  document.querySelectorAll('.ob-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('ob-'+n).classList.add('active');
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot-'+i);
+    dot.classList.remove('active','done');
+    if (i < n) dot.classList.add('done');
+    else if (i === n) dot.classList.add('active');
+    if (i < 3) {
+      const line = document.getElementById('line-'+i);
+      line.classList.remove('done');
+      if (i < n) line.classList.add('done');
+    }
+  }
+  currentObStep = n;
+  window.scrollTo(0,0);
+}
+
+// FC type chips
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('fc-type-chip')) {
+    document.querySelectorAll('.fc-type-chip').forEach(c => c.classList.remove('active'));
+    e.target.classList.add('active');
+  }
+});
+</script>
+</body>
+</html>
